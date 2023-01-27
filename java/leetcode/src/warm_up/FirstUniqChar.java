@@ -1,3 +1,5 @@
+package warm_up;
+
 public class FirstUniqChar {
     public int firstUniqChar(String s) {
         // letlcode

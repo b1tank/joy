@@ -1,6 +1,6 @@
 # vscode settings
-.vscode/
-*.json
+#.vscode/
+#*.json
 
 # vim temporary files
 .*.*.swp
