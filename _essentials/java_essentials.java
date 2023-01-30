@@ -1,7 +1,10 @@
 package _essentials;
 
+import java.util.ArrayList;
+
 class Main {
     public static void main (String[] args) {
-        System.out.println("Hello, World.");
+        var al = new ArrayList<Integer>();
+        al.add(2);
     }
 }
