@@ -1,12 +1,26 @@
 package _essentials;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Random;
+import java.util.Stack;
 
 class Main {
+    /**
+     * @param args
+     */
     public static void main (String[] args) {
         // Number
         int i = 3;
         Integer ii = 5;
+        Integer ma = Integer.MAX_VALUE;
+        Integer ma = Integer.MIN_VALUE;
 
         ii.compareTo(i);
         ii.shortValue();
@@ -47,6 +61,12 @@ class Main {
 
         Math.toDegrees(f);
         Math.toRadians(f);
+
+        // random
+        Random rand = new Random();
+        int r = rand.nextInt(1000); // 0-999
+        double rd = rand.nextDouble(); // 0-1
+        double rd2 = Math.random(); // 0-1
 
         // char and Character
         char ch = 'a';
@@ -143,5 +163,92 @@ class Main {
         sbd.toString();
         sbd.setLength(0); // clear
         sbd.ensureCapacity(i);
+
+        for (char c1 : str.toCharArray()) {
+            System.out.println(c1);
+        }
+
+        // ArrayList
+        List<Integer> li = new ArrayList<Integer>();
+        li.add(0, 1);
+        li.add(1, 2);
+        List<Integer> li2 = new ArrayList<Integer>();
+        li2.add(3);
+        li2.add(4);
+        li.addAll(1, li2);
+        li.remove(1);
+        li.set(0, 5);
+        for (int i0=0; i0<li.size(); i0++) {
+            System.out.println(li.get(i0));
+        }
+        for (int i1 : li) {
+            System.out.println(i1);
+        }
+        li.clear();
+        li.equals(li2);
+        li.isEmpty();
+        li.contains(2);
+        li.containsAll(li2);
+        li.indexOf(3);
+        li.lastIndexOf(3);
+        li.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer a, Integer b) {
+                return a - b;
+            }
+        });
+        li.sort((a, b) -> a - b);
+
+        // stack
+        Stack st = new Stack<Integer>();
+        st.push(1);
+        Integer stp = (Integer) st.pop();
+        Integer stk = (Integer) st.peek();
+        st.empty();
+        int pos = st.search(i);
+
+        // dequeue and priority queue (heap)
+        Queue<String> deque = new ArrayDeque<>();
+        PriorityQueue<String> sbq =new PriorityQueue<String>(); // String is comparable by default
+        boolean suc = sbq.add("Amit"); // if unsuccessful, throw exception
+        boolean suc2 = sbq.offer("Amit"); // if unsuccessful, return false
+        sbq.remove();
+        sbq.poll(); // return null if empty
+        sbq.element();
+        sbq.peek(); // return null if empty
+
+        PriorityQueue<int[]> heap = new PriorityQueue<int[]>(5, new CustomComparator());
+
+        // HashSet
+        HashSet hs = new HashSet<Integer>();
+        hs.add(1);
+        hs.contains(2);
+        hs.remove(2);
+        hs.clear();
+
+        // HashMap
+        HashMap hm = new HashMap<Integer, String>();
+        hm.put(1, "amy");
+        hm.get(1);
+        hm.remove(1);
+        hm.clear();
+    }
+
+    static class CustomComparator implements Comparator<int[]> {
+        public int compare(int[] s1, int[] s2) {
+            if (s1[0] > s2[0]) {
+                return 1;
+            } else if (s1[0] < s2[0]) {
+                return -1;
+            } else {
+                if (s1[1] > s2[1]) {
+                    return 1;
+                } else if (s1[1] < s2[1]) {
+                    return -1;
+                } else {
+                    return 0;
+                }
+            }
+        }
     }
 }
