@@ -3,6 +3,7 @@ package _essentials;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -42,6 +43,8 @@ class Main {
         float f = 2.0f;
         double d = 2.0d;
         byte mask = 0x7f;
+
+        int binary = 0b00000111; // binary literal
 
         // Math
         Math.min(f, i);
@@ -168,7 +171,9 @@ class Main {
             System.out.println(c1);
         }
 
-        // ArrayList
+        // Array and ArrayList
+        int[] data = {197, 125, 3};
+        int l = data.length; // length is a field
         List<Integer> li = new ArrayList<Integer>();
         li.add(0, 1);
         li.add(1, 2);
