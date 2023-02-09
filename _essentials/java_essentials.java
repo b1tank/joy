@@ -157,6 +157,7 @@ class Main {
         StringBuilder sbd3 = new StringBuilder(20);
         StringBuilder sbd4 = new StringBuilder(str);
 
+        sbd.length();
         sbd.append(str3);
         sbd.insert(1, str);
         sbd.delete(0, 2); // start, end-1 (inclusive)
@@ -183,6 +184,7 @@ class Main {
         li.addAll(1, li2);
         li.remove(1);
         li.set(0, 5);
+        li.size();
         for (int i0=0; i0<li.size(); i0++) {
             System.out.println(li.get(i0));
         }
