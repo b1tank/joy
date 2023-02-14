@@ -2,8 +2,8 @@ package _essentials;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
-import java.util.Deque;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -21,7 +21,7 @@ class Main {
         int i = 3;
         Integer ii = 5;
         Integer ma = Integer.MAX_VALUE;
-        Integer ma = Integer.MIN_VALUE;
+        Integer mi = Integer.MIN_VALUE;
 
         ii.compareTo(i);
         ii.shortValue();
@@ -172,10 +172,22 @@ class Main {
             System.out.println(c1);
         }
 
-        // Array and ArrayList
+        // static methods of Arrays class
         int[] data = {197, 125, 3};
-        int l = data.length; // length is a field
-        List<Integer> li = new ArrayList<Integer>();
+        Integer[] data2 = {197, 125, 3};
+        List<Integer> li = Arrays.asList(data2);
+        List<Integer> li0 = Arrays.asList(1, 34, 56);
+        Arrays.sort(data2, 0, 2);
+        int index = Arrays.binarySearch(data2, 34);
+        System.out.println("34 found the key at the index = " + index);
+        int[] newl = Arrays.copyOf(data, 10);
+        Arrays.fill(newl, 11);
+        Arrays.toString(newl);
+
+        // Array and ArrayList
+        int l = data.length; // array length is a field
+        // List<Integer> li = Arrays.asList(data); // compile error
+        List<Integer> li1 = new ArrayList<Integer>();
         li.add(0, 1);
         li.add(1, 2);
         List<Integer> li2 = new ArrayList<Integer>();
