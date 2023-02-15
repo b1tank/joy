@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 
 // class CalcEquation {
 //     private class Pair {
@@ -80,16 +81,20 @@ import java.util.List;
 //     }
 // }
 
-class CalcEquation {
+class CalcEquationUpdateInUnion {
+    // https://algs4.cs.princeton.edu/15uf/WeightedQuickUnionPathCompressionUF.java.html
     // UnionFind class
     private class UF {
-        HashMap<String, List<String>> graph = new HashMap<>(); // save all neighbors for each node for DFS/BFS traversal
-        HashMap<String, String> parent = new HashMap<>(); // save parent for easily traversing to the root at the top
-        HashMap<String, Double> dividedByRoot = new HashMap<>(); // save the quotient of each node value divided by root value
-        HashMap<String, Integer> size = new HashMap<>(); // save the size of a single tree for tree depth minimization
+        Map<String, List<String>> graph; // save all neighbors for each node for DFS/BFS traversal
+        Map<String, String> parent; // save parent for easily traversing to the root at the top
+        Map<String, Double> dividedByRoot; // save the quotient of each node value divided by root value
+        Map<String, Integer> size; // save the size of a single tree for tree depth minimization
         
-        // no need to initialize since all the HashMap can be populated in the methods
         public UF() {
+            graph = new HashMap<>();
+            parent = new HashMap<>();
+            dividedByRoot = new HashMap<>();
+            size = new HashMap<>();
         }
         
         public void union(String a, String b, double quotient) {
@@ -153,6 +158,98 @@ class CalcEquation {
         public double query(String a, String b) {
             // don't forget this edge case when the node value is not in graph (i.e. the original equations)
             if (!graph.containsKey(a) || !graph.containsKey(b)) {
+                return -1.0;
+            }
+
+            if (findRoot(a).equals(findRoot(b))) {
+                return dividedByRoot.get(a) / dividedByRoot.get(b);   
+            } else {
+                return -1.0;
+            }
+        }
+    }
+    public double[] calcEquation(List<List<String>> equations, double[] values, List<List<String>> queries) {
+        UF uf = new UF();
+        for (int i=0; i<equations.size(); i++) {
+            List<String> pair = equations.get(i);
+            String p1 = pair.get(0);
+            String p2 = pair.get(1);
+            double quotient = values[i];
+            uf.union(p1, p2, quotient);
+        }
+        
+        double[] res = new double[queries.size()];
+        for (int i=0; i<queries.size(); i++) {
+            List<String> query = queries.get(i);
+            res[i] = uf.query(query.get(0), query.get(1));
+        }
+        return res;
+    }
+}
+
+class CalcEquationUpdateInFind {
+    // https://algs4.cs.princeton.edu/15uf/WeightedQuickUnionPathCompressionUF.java.html
+    // UnionFind class
+    private class UF {
+        // the following 2 maps can be merged into a single map like Map<String, Map<String, Double>>
+        // NOTE: the roots for some nodes can be outdated/incorrect after union, while findRoot() always takes care of updating root and returns the correct one
+        Map<String, String> root; // save root for each node
+        Map<String, Double> dividedByRoot; // save the quotient of each node value divided by root value
+
+        Map<String, Integer> size; // save the size of a single tree for tree depth minimization
+        
+        public UF() {
+            root = new HashMap<>();
+            dividedByRoot = new HashMap<>();
+            size = new HashMap<>();
+        }
+        
+        public void union(String a, String b, double quotient) {
+            String ra = findRoot(a);
+            String rb = findRoot(b);
+            if (size.get(ra) > size.get(rb)) {
+                // update all dividedByRoot values for nodes in the smaller tree via DFS or BFS
+                double bridge = dividedByRoot.get(a) / quotient / dividedByRoot.get(b); // quotient of smaller tree's root value divided by larger tree's root value
+                dividedByRoot.put(rb, bridge);
+                
+                // only one direction pointing to the root
+                root.put(rb, ra);
+                
+                size.put(ra, size.get(ra) + size.get(rb));
+                size.remove(rb);
+            } else {
+                // similar logic as above
+                double bridge = dividedByRoot.get(b) / (1.0 / quotient) / dividedByRoot.get(a);
+                dividedByRoot.put(ra, bridge);
+                
+                root.put(ra, rb);
+                
+                size.put(rb, size.get(ra) + size.get(rb));
+                size.remove(ra);
+            }
+        }
+        
+        // findRoot() always takes care of updating root in the Map and returns the correct one
+        public String findRoot(String a) {
+            if (!root.containsKey(a)) {
+                root.put(a, a);
+                dividedByRoot.put(a, 1.0);
+                size.put(a, 1);
+                return a;
+            }
+            String rt = root.get(a);
+            if (a != rt) {
+                String correctRoot = findRoot(rt);
+                root.put(a, correctRoot);
+                dividedByRoot.put(a, dividedByRoot.get(a) * dividedByRoot.get(rt));
+            }
+            
+            return root.get(a);
+        }
+        
+        public double query(String a, String b) {
+            // don't forget this edge case when the node value is not in graph (i.e. the original equations)
+            if (!root.containsKey(a) || !root.containsKey(b)) {
                 return -1.0;
             }
 

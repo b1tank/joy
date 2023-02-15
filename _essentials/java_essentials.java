@@ -187,10 +187,10 @@ class Main {
         // Array and ArrayList
         int l = data.length; // array length is a field
         // List<Integer> li = Arrays.asList(data); // compile error
-        List<Integer> li1 = new ArrayList<Integer>();
+        List<Integer> li1 = new ArrayList<>();
         li.add(0, 1);
         li.add(1, 2);
-        List<Integer> li2 = new ArrayList<Integer>();
+        List<Integer> li2 = new ArrayList<>();
         li2.add(3);
         li2.add(4);
         li.addAll(1, li2);
@@ -219,7 +219,7 @@ class Main {
         li.sort((a, b) -> a - b);
 
         // stack
-        Stack st = new Stack<Integer>();
+        Stack<Integer> st = new Stack<>();
         st.push(1);
         Integer stp = (Integer) st.pop();
         Integer stk = (Integer) st.peek();
@@ -228,7 +228,7 @@ class Main {
 
         // dequeue and priority queue (heap)
         Queue<String> deque = new ArrayDeque<>();
-        PriorityQueue<String> sbq =new PriorityQueue<String>(); // String is comparable by default
+        PriorityQueue<String> sbq =new PriorityQueue<>(); // String is comparable by default
         boolean suc = sbq.add("Amit"); // if unsuccessful, throw exception
         boolean suc2 = sbq.offer("Amit"); // if unsuccessful, return false
         sbq.remove();
@@ -239,16 +239,17 @@ class Main {
         PriorityQueue<int[]> heap = new PriorityQueue<int[]>(5, new CustomComparator());
 
         // HashSet
-        HashSet hs = new HashSet<Integer>();
+        HashSet<Integer> hs = new HashSet<>();
         hs.add(1);
         hs.contains(2);
         hs.remove(2);
         hs.clear();
 
         // HashMap
-        HashMap hm = new HashMap<Integer, String>();
+        HashMap<Integer, String> hm = new HashMap<>();
         hm.put(1, "amy");
         hm.get(1);
+        hm.getOrDefault(1, "one");
         hm.remove(1);
         hm.clear();
     }
