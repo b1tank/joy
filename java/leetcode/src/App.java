@@ -1,6 +1,3 @@
-import week_2.*;
-import week_3.DecodeString;
-import week_3.LongestSubstring;
 import week_3.ValidUtf8;
 
 public class App {

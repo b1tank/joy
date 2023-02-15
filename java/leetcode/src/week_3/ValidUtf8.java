@@ -1,7 +1,5 @@
 package week_3;
 
-import java.util.ArrayList;
-
 public class ValidUtf8 {
     public boolean validUtf8(int[] data) {
         // 0xx
