@@ -38,6 +38,8 @@ class Main {
 
         Integer.decode("0xff");
 
+        Integer.bitCount(11); // return 3
+
         short j = 3;
         long k = 3;
         float f = 2.0f;
@@ -99,7 +101,7 @@ class Main {
         String str3 = str + str2;
 
         System.out.printf("%f, %d, %s", f, i, str);
-        String fs = String.format("%f, %d, %s", f, i, str);
+        String fs = String.format("%03.2f, %d, %s", f, i, str); // '0' is a zero-padding flag, 3 is width, 2 is precision
         System.out.println(fs);
 
         String substr = str.substring(1, 2); // start, end
