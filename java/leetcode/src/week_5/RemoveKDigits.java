@@ -31,6 +31,6 @@ public class RemoveKDigits {
 
         sb.reverse();
 
-        return sb.isEmpty() ? "0" : sb.toString();
+        return sb.length() == 0 ? "0" : sb.toString();
     }
 }

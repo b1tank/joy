@@ -13,7 +13,7 @@ public class IsSubsequence {
         // d -1
         
         // init hashmap to store indices of letters
-        var hm = new ArrayList<ArrayList<Integer>>();
+        ArrayList<ArrayList<Integer>> hm = new ArrayList<>();
         for (int i=0; i<26; i++) {
             hm.add(new ArrayList<Integer>());
         }
@@ -28,7 +28,7 @@ public class IsSubsequence {
         
         int cur = -1;
         int next = 0;
-        for (var c : s.toCharArray()) {
+        for (char c : s.toCharArray()) {
             int k = c - 'a';
             if (ps[k] == hm.get(k).size()) return false; // not found
             next = hm.get(k).get(ps[k]);
