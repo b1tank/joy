@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -191,6 +192,8 @@ class Main {
         int[] newl = Arrays.copyOf(data, 10);
         Arrays.fill(newl, 11);
         Arrays.toString(newl);
+        int[][] people = {{7, 0}, {7, 1}, {6, 1}, {5, 0}, {5, 2}, {4, 4}};
+        Arrays.sort(people, (a, b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]); // first element descending, second element ascending
 
         // Array and ArrayList
         int l = data.length; // array length is a field
@@ -225,6 +228,10 @@ class Main {
             }
         });
         li.sort((a, b) -> a - b);
+
+        List<int[]> linkedList = new LinkedList<>();
+        linkedList.add(3, new int[2]);
+        linkedList.toArray(new int[3][2]);
 
         // stack
         Stack<Integer> st = new Stack<>();
@@ -262,6 +269,8 @@ class Main {
         hm.clear();
     }
 
+    // from low to high (min heap)
+    // for max heap, switch 1 to -1 and -1 to 1
     static class CustomComparator implements Comparator<int[]> {
         public int compare(int[] s1, int[] s2) {
             if (s1[0] > s2[0]) {
