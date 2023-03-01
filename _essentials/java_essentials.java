@@ -48,6 +48,10 @@ class Main {
 
         int binary = 0b00000111; // binary literal
 
+        // bit manipulation
+        int tmp = 0xffffffff >>> 4; // 0xffffffff (with '1' shifted from left)
+        int tmp2 = 0xffffffff >> 4; // 0x0fffffff (with '0' shifted from left)
+
         // Math
         Math.min(f, i);
         Math.max(f, i);
@@ -76,6 +80,8 @@ class Main {
         // char and Character
         char ch = 'a';
         char uniChar = '\u03A9';
+        char numberToChar = '0' + 1; // '1'
+        char numberToChar2 = 'a' + 5; // 'f'
         char[] charArray = {'a', 'b', 'c'};
         Character c = new Character(ch);
         Character.isLetter(ch);
