@@ -31,8 +31,8 @@ class Main {
         ii.byteValue();
         ii.equals(i);
 
-        Integer i3 = Integer.valueOf("19");
-        int i4 = Integer.parseInt("19");
+        Integer i3 = Integer.valueOf("19"); // Integer object
+        int i4 = Integer.parseInt("19"); // primitive
 
         Integer.toString(12);
         ii.toString();
