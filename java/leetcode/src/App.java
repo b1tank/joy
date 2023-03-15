@@ -1,11 +1,10 @@
-import week_6.ReconstructQueue;
-import week_6.ToHex;
+import week_7.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        int[][] people = {{7, 0}, {7, 1}, {6, 1}, {5, 0}, {5, 2}, {4, 4}};
-        ReconstructQueue cla = new ReconstructQueue();
-        int[][] res = cla.reconstructQueue(people);
+        int[] nums = {7, 2, 5, 10, 8};
+        SplitArray cla = new SplitArray();
+        int res = cla.splitArray(nums, 3);
         System.out.println(res);
     }
 }
