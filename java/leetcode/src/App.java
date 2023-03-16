@@ -1,4 +1,4 @@
-import week_7.*;
+import random.*;
 
 public class App {
     public static void main(String[] args) throws Exception {

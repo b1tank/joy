@@ -17,7 +17,7 @@ class Main {
     /**
      * @param args
      */
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         // Number
         int i = 3;
         Integer ii = 5;
@@ -83,7 +83,7 @@ class Main {
         char uniChar = '\u03A9';
         char numberToChar = '0' + 1; // '1'
         char numberToChar2 = 'a' + 5; // 'f'
-        char[] charArray = {'a', 'b', 'c'};
+        char[] charArray = { 'a', 'b', 'c' };
         Character c = new Character(ch);
         Character.isLetter(ch);
         Character.isDigit(ch);
@@ -108,7 +108,8 @@ class Main {
         String str3 = str + str2;
 
         System.out.printf("%f, %d, %s", f, i, str);
-        String fs = String.format("%03.2f, %d, %s", f, i, str); // '0' is a zero-padding flag, 3 is width, 2 is precision
+        String fs = String.format("%03.2f, %d, %s", f, i, str); // '0' is a zero-padding flag, 3 is width, 2 is
+                                                                // precision
         System.out.println(fs);
 
         String substr = str.substring(1, 2); // start, end
@@ -148,7 +149,7 @@ class Main {
 
         String str4 = String.copyValueOf(charArray);
         String str5 = String.copyValueOf(charArray, 2, 3);
-        
+
         str.startsWith("abc");
         str.endsWith("xyz");
 
@@ -160,7 +161,8 @@ class Main {
         str.matches("xy.+");
 
         // StringBuilder(faster) (used in single-thread env)
-        // StringBuffer(slower, thread-safe and synchronized) (used in multi-threaded env)
+        // StringBuffer(slower, thread-safe and synchronized) (used in multi-threaded
+        // env)
         StringBuilder sbd = new StringBuilder();
         StringBuilder sbd2 = new StringBuilder(charSequence);
         StringBuilder sbd3 = new StringBuilder(20);
@@ -182,8 +184,8 @@ class Main {
         }
 
         // static methods of Arrays class
-        int[] data = {197, 125, 3};
-        Integer[] data2 = {197, 125, 3};
+        int[] data = { 197, 125, 3 };
+        Integer[] data2 = { 197, 125, 3 };
         List<Integer> li = Arrays.asList(data2);
         List<Integer> li0 = Arrays.asList(1, 34, 56);
         Arrays.sort(data2, 0, 2);
@@ -192,8 +194,30 @@ class Main {
         int[] newl = Arrays.copyOf(data, 10);
         Arrays.fill(newl, 11);
         Arrays.toString(newl);
-        int[][] people = {{7, 0}, {7, 1}, {6, 1}, {5, 0}, {5, 2}, {4, 4}};
-        Arrays.sort(people, (a, b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]); // first element descending, second element ascending
+        int[][] points = { { 7, 0 }, { 7, 1 }, { 6, 1 }, { 5, 0 }, { 5, 2 }, { 4, 4 } };
+        Arrays.sort(points, (a, b) -> (a[0] < b[0] ? -1 : (a[0] == b[0] ? 0 : 1))); // avoid integer overflow
+        Arrays.sort(points, (a, b) -> Integer.valueOf(a[0]).compareTo(b[0])); // avoid integer overflow
+        Arrays.sort(points, (a, b) -> Integer.compare(a[0], b[0])); // avoid integer overflow
+        Arrays.sort(points, Comparator.comparingInt(a -> a[0])); // avoid integer overflow
+        // expanded version
+        Arrays.sort(points, (a, b) -> {
+            if (a[0] == b[0])
+                return 0;
+            if (a[0] < b[0])
+                return -1;
+            return 1;
+        });
+        // expanded version using Comparator
+        Arrays.sort(points, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] a, int[] b) {
+                if (a[0] == b[0])
+                    return 0;
+                if (a[0] < b[0])
+                    return -1;
+                return 1;
+            }
+        });
 
         // Array and ArrayList
         int l = data.length; // array length is a field
@@ -208,7 +232,7 @@ class Main {
         li.remove(1);
         li.set(0, 5);
         li.size();
-        for (int i0=0; i0<li.size(); i0++) {
+        for (int i0 = 0; i0 < li.size(); i0++) {
             System.out.println(li.get(i0));
         }
         for (int i1 : li) {
@@ -243,7 +267,7 @@ class Main {
 
         // dequeue and priority queue (heap)
         Queue<String> deque = new ArrayDeque<>();
-        PriorityQueue<String> sbq =new PriorityQueue<>(); // String is comparable by default
+        PriorityQueue<String> sbq = new PriorityQueue<>(); // String is comparable by default
         boolean suc = sbq.add("Amit"); // if unsuccessful, throw exception
         boolean suc2 = sbq.offer("Amit"); // if unsuccessful, return false
         sbq.remove();
@@ -267,6 +291,41 @@ class Main {
         hm.getOrDefault(1, "one");
         hm.remove(1);
         hm.clear();
+
+        // binary search
+        int[] nums = new int[] { 3, 5, 8, 10 };
+        binarySearchBalanced(nums, 6);
+        binarySearchUnbalanced(nums, 6);
+    }
+
+    static private boolean binarySearchBalanced(int[] nums, int target) {
+        int l = 0, r = nums.length - 1;
+        while (l <= r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) {
+                return true;
+            } else if (nums[mid] > target) {
+                r = mid - 1;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return false;
+    }
+
+    static private boolean binarySearchUnbalanced(int[] nums, int target) {
+        int l = 0, r = nums.length - 1;
+        while (l < r) {
+            int mid = l + (r - l) / 2;
+            if (nums[mid] == target) {
+                return true;
+            } else if (nums[mid] > target) {
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return nums[l] == target; // last check
     }
 
     // from low to high (min heap)
