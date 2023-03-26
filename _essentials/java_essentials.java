@@ -117,7 +117,7 @@ class Main {
         CharSequence charSequence = str3.subSequence(0, 2);
         str.toCharArray();
 
-        String[] strs = str3.split("sa", 2);
+        String[] strs = str3.split("/");
         str.trim();
 
         str.toUpperCase();
