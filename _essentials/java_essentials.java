@@ -8,10 +8,12 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.Queue;
 import java.util.Random;
 import java.util.Stack;
+import java.util.TreeMap;
 
 class Main {
     /**
@@ -279,18 +281,63 @@ class Main {
 
         // HashSet
         HashSet<Integer> hs = new HashSet<>();
-        hs.add(1);
-        hs.contains(2);
-        hs.remove(2);
-        hs.clear();
 
         // HashMap
         HashMap<Integer, String> hm = new HashMap<>();
         hm.put(1, "amy");
         hm.get(1);
         hm.getOrDefault(1, "one");
-        hm.remove(1);
-        hm.clear();
+
+        hm.containsKey(1);
+        hm.containsValue("amy");
+
+        hm.keySet();
+        hm.values();
+        hm.entrySet();
+
+        // Collection
+        ArrayList<Integer> collection = new ArrayList<>();
+        collection.add(2);
+        collection.addAll(li);
+
+        collection.contains(3);
+        collection.containsAll(li);
+
+        collection.remove(2);
+        collection.removeAll(li);
+        collection.clear();
+
+        collection.equals(li);
+
+        collection.iterator();
+
+        collection.isEmpty();
+        collection.size();
+
+        collection.toArray();
+
+        int hash = collection.hashCode();
+
+        // TreeMap (sorted map; log(n) for adding, deleting, retrieving)
+        TreeMap<Integer, Integer> tm = new TreeMap<>();
+        tm.put(1, 4);
+        tm.put(5, 6);
+        tm.put(3, 7);
+        tm.get(5);
+        tm.floorEntry(2); // <= 2
+        tm.floorKey(2);
+        tm.ceilingEntry(4); // >= 4
+        tm.ceilingKey(4);
+        tm.lowerEntry(3); // < 3
+        tm.lowerKey(3);
+        tm.higherEntry(1); // > 1
+        tm.higherKey(1);
+        Map.Entry<Integer, Integer> entry = tm.floorEntry(2);
+        int k = entry.getKey();
+        int v = entry.getValue();
+        tm.descendingKeySet();
+        tm.descendingMap();
+        
 
         // binary search
         int[] nums = new int[] { 3, 5, 8, 10 };
