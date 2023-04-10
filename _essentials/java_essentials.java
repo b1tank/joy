@@ -64,6 +64,8 @@ class Main {
         Math.sqrt(f);
         Math.pow(f, 2);
         Math.exp(f); // e^f
+        Math.log(f); // log_e(f)
+        Math.log10(f); // log_10(f)
 
         Math.abs(f);
         Math.ceil(f);
