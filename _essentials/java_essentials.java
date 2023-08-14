@@ -135,6 +135,8 @@ class Main {
         str.lastIndexOf("abc");
         str.indexOf("abc", 1);
         str.lastIndexOf("abc", 1);
+        str.substring(0, 3);
+        str.split("\\+|i"); // split by "+" (need to be escaped by backslash, which also needs to be escaped) or "i"
 
         str.contains(charSequence);
 

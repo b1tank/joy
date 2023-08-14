@@ -1,0 +1,11 @@
+﻿Name,Best,Average,Worst,Memory,Stable,Method,Other notes
+Bubble sort,n,n2,n2,1,Yes,Exchanging,Tiny code size
+Insertion sort,n,n2,n2,1,Yes,Insertion,"O(n + d), in the worst case over sequences that have d inversions"
+Selection sort,n2,n2,n2,1,No,Selection,Stable with O(n) extra space or when using linked lists
+Quicksort,nlogn,nlogn,n2,nlogn,No,Partitioning,Quicksort is usually done in-place with O(logn) stack space
+Merge sort,nlogn,nlogn,nlogn,n,Yes,Merging,Highly parallelizable (up to O(logn) using the Three Hungarians' Algorithm)
+Heapsort,nlogn,nlogn,nlogn,1,No,Selection,
+Shellsort,nlogn,n^(4/3),n^(2/3),1,No,Insertion,Small code size
+Patience sorting,n,—,nlogn,n,No,Insertion & Selection,Finds all the longest increasing subsequences in O(nlog n)
+Counting sort,—,n+r,n+r,n+r,Yes,,"If r is O(n), then average time complexity is O(n)"
+LSD Radix Sort,—,nk/d,nk/d,n+2^d,Yes,,"k/d recursion levels, 2d for count array"
