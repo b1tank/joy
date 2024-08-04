@@ -3,6 +3,8 @@ package _essentials;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -56,6 +58,12 @@ class Main {
         int tmp2 = 0xffffffff >> 4; // 0x0fffffff (with '0' shifted from left)
 
         // Math
+        int mod = 0; // NOTE: sign is aligned with left operand since it always satisfies: dividend = divisor * quotient + mod
+        mod = -12 %  5; // -2
+        mod =  12 %  5; //  2
+        mod = -12 % -5; // -2
+        mod =  12 % -5; //  2
+
         Math.min(f, i);
         Math.max(f, i);
 
@@ -263,6 +271,14 @@ class Main {
         linkedList.add(3, new int[2]);
         linkedList.toArray(new int[3][2]);
 
+        List<Integer> list = new ArrayList<Integer>();
+        Collections.sort(list);
+
+        // array of ArrayList(List)
+        List<Integer>[] arrayOfList = new List<Integer>[10]; // compile error, not allowed (https://docs.oracle.com/javase/tutorial/java/generics/restrictions.html#createArrays)
+        // use ArrayList of ArrayList instead
+        List<List<Integer>> listOfList = new ArrayList<>();
+
         // stack
         Stack<Integer> st = new Stack<>();
         st.push(1);
@@ -273,6 +289,7 @@ class Main {
 
         // dequeue and priority queue (heap)
         Queue<String> deque = new ArrayDeque<>();
+        Queue<String> dequeFromLinkedList = new LinkedList<>();
         PriorityQueue<String> sbq = new PriorityQueue<>(); // String is comparable by default
         boolean suc = sbq.add("Amit"); // if unsuccessful, throw exception
         boolean suc2 = sbq.offer("Amit"); // if unsuccessful, return false

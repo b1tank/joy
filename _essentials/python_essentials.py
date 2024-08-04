@@ -153,6 +153,7 @@ arr.reverse() # in-place
 a.clear() # empty the list
 
 # list comprehension
+[[] for i in range(n)] # list of n empty lists; [[]] * n or [list()] * n will have all []s pointing to 1 reference!!! (https://stackoverflow.com/a/12791510)
 [str(x) for x in arr] # Output: ['1','2','3']
 [str(x) for x in arr if x%2] # Output: ['1','3']
 list(map(lambda x: str(x), arr)) # Output: ['1','2','3']; have to manually convert to list in python3. map() is iterable without explicit list conversion

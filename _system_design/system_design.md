@@ -1,10 +1,13 @@
 # System Design
 
-> Note: **Black Tank System** aka **"BTS"** will be used throughout the doc to represent the system to be designed.
+> Note: **Yummy Jar** aka **"YJ"** will be used throughout the doc to represent the system to be designed.
 
 ## Strategy
 
 ### 1. Clarifying Requirements
+
+- Platform: web or mobile ?
+-
 
 #### Functional
 
@@ -24,6 +27,8 @@
     - WHAT-self: self-looping event
 
 #### Non-functional 
+
+1. Real-time or not ?
 
 1. CAP theorem
     - Consistency
